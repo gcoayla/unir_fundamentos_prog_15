@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-
-// Actividad 1 imprimir todos los registros
+// Actividad 1 imprimir todos los registros de la tabla
 void imprimir() {
 
 }
