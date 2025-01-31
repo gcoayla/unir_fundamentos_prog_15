@@ -55,19 +55,102 @@ int cargar_datos(const char *filename, Gasolinera gasolineras[]) {
     return count - 1;
 }
 
-// Solicita un numero al usuario y se asegura que el valor introducido sea un numero entero
-int obtenerEntero() {
+// Función para verificar si una cadena contiene solo dígitos
+bool contieneSoloDigitos(const char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] < '0' || str[i] > '9') {
+            return false; // Carácter no es un dígito
+        }
+    }
+    return true; // Todos los caracteres son dígitos
+}
 
+// Solicita un numero al usuario y se asegura que el valor introducido sea un numero entero positivo
+int obtenerEntero() {
+    char input[20];
+    int num;
+
+    while (true) {
+        if (scanf("%19s", input) != 1) {
+            // Limpiar el buffer de entrada en caso de error de lectura
+            while (getchar() != '\n');
+            printf("Entrada invalida.\n");
+            continue;
+        }
+
+        if (!contieneSoloDigitos(input)) {
+            printf("Entrada invalida. Intente de nuevo.\n");
+            continue;
+        }
+
+        if (sscanf(input, "%d", &num) != 1) {
+            printf("Entrada invalida. Intente de nuevo.\n");
+            continue;
+        }
+
+        if (num <= 0) {
+            printf("Entrada invalida. Intente de nuevo.\n");
+            continue;
+        }
+
+        return num;
+    }
+}
+
+// Función para verificar si una cadena contiene solo dígitos y un punto decimal
+bool contieneSoloDigitosYUnPunto(const char *str) {
+    int puntos = 0;
+
+    if (str[0] == '-') {
+        str++; // Avanzar al siguiente carácter
+    }
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == '.') {
+            puntos++;
+            if (puntos > 1) {
+                return false;
+            }
+        } else if (str[i] < '0' || str[i] > '9') {
+            return false;
+        }
+    }
+    return true;
 }
 
 // Solicita un numero al usuario y se asegura que el valor introducido sea un numero flotante
-int obtenerFlotanteO1Negativo() {
+float obtenerFlotanteO1Negativo() {
+    char input[30];
+    float num;
 
+    while (true) {
+        printf("Ingrese un numero flotante positivo o -1: ");
+        if (scanf("%29s", input) != 1) {
+            while (getchar() != '\n');
+            printf("Entrada invalida. Intente de nuevo \n");
+            continue;
+        }
+
+        if (!contieneSoloDigitosYUnPunto(input)) {
+            printf("Entrada invalida. Ingrese solo digitos y un punto decimal o -1.\n");
+            continue;
+        }
+
+        if (sscanf(input, "%f", &num) != 1) {
+            printf("Entrada invalida. No se pudo convertir a flotante.\n");
+            continue;
+        }
+
+        if (num > 0 || num == -1) {
+            return num;
+        } else {
+            printf("Entrada invalida. Ingrese un numero positivo o -1.\n");
+        }
+    }
 }
 
 // ----------------- Problemas
 // Problema 1 imprimir todos los registros de la tabla
-void imprimirRegistros(Gasolinera gasolineras[], int cantidad) {
 
 // Función para mostrar los registros en formato de tabla
 void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
