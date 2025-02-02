@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define MAX_LINE 1024
 #define MAX_RECORDS 1000
@@ -193,13 +194,109 @@ void modificarRegistroPorId() {
 }
 
 // Problema 4 calcular el precio maximo (gasolina 95)
-void calcularPrecioMaximo() {
+void calcularPrecioMaximo(Gasolinera gasolineras[], int cantidad) {
+    FILE *archivo = fopen("ficheiro.txt", "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo\n");
+
+    }
+
+    char linea[1024];  // Buffer para almacenar una línea del archivo
+    int columna_deseada = 8; // Octava columna (la que se quiere leer)
+    char *valorLeido;
+    int fila = 0;
+    float maximo = -1; // Inicializamos con un valor bajo
+
+    printf("Valores de la columna a comparar precios (%d):\n", columna_deseada);
+
+    // Leer línea por línea
+    while (fgets(linea, sizeof(linea), archivo)) {
+        // Eliminar el salto de línea (\n) si existe
+        linea[strcspn(linea, "\n")] = 0;
+
+        valorLeido = strtok(linea, ";");  // Dividir la línea en tokens por ";"
+        int columna_actual = 1;
+
+        while (valorLeido != NULL) {  // Verificar que el token no sea NULL
+            if (columna_actual == columna_deseada) {
+                if (fila > 0) { // Evitar la primera fila (encabezado)
+                    float valor = atof(valorLeido); // Convertir a número
+
+                    if (valor != -1) { // Solo comparamos valores válidos
+                        if (valor > maximo) {
+                            maximo = valor;
+                        }
+                    }
+                }
+                break; // No necesitamos leer más columnas de esta fila
+            }
+            valorLeido = strtok(NULL, ";"); // Pasar al siguiente valor en la línea
+            columna_actual++;
+        }
+        fila++;
+    }
+
+    fclose(archivo);
+
+    if (maximo == -1) {
+        printf("No se encontraron valores válidos en la columna %d\n", columna_deseada);
+    } else {
+        printf("El valor más alto de la gasolina 95 es: %.2f\n", maximo);
+    }
+
 
 }
 
 // Problema 5 calcular el precio minimo (gasolina 95)
-void calcularPrecioMinimo() {
+void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
+    FILE *archivo = fopen("ficheiro.txt", "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo\n");
 
+    }
+
+    char linea[1024];  // Buffer para almacenar una línea del archivo
+    int columna_deseada = 8; // Octava columna (la que se quiere leer)
+    char *valorLeido;
+    int fila = 0;
+    float minimo = 1024; // Inicializamos con un valor alto
+
+    printf("Valores de la columna a comparar precios (%d):\n", columna_deseada);
+
+    // Leer línea por línea
+    while (fgets(linea, sizeof(linea), archivo)) {
+        // Eliminar el salto de línea (\n) si existe
+        linea[strcspn(linea, "\n")] = 0;
+
+        valorLeido = strtok(linea, ";");  // Dividir la línea en tokens por ";"
+        int columna_actual = 1;
+
+        while (valorLeido != NULL) {  // Verificar que el token no sea NULL
+            if (columna_actual == columna_deseada) {
+                if (fila > 0) { // Evitar la primera fila (encabezado)
+                    float valor = atof(valorLeido); // Convertir a número
+
+                    if (valor > 0) { // Solo comparamos valores válidos
+                        if (valor < minimo) {
+                            minimo = valor;
+                        }
+                    }
+                }
+                break; // No necesitamos leer más columnas de esta fila
+            }
+            valorLeido = strtok(NULL, ";"); // Pasar al siguiente valor en la línea
+            columna_actual++;
+        }
+        fila++;
+    }
+
+    fclose(archivo);
+
+    if (minimo == __FLT_MAX__) {
+        printf("No se encontraron valores válidos en la columna %d\n", columna_deseada);
+    } else {
+        printf("El valor más bajo de la gasolina es: %.2f\n", minimo);
+    }
 }
 
 // Problema 6 imprimir todos los registros ordenados por precio
@@ -216,10 +313,13 @@ int main(void) {
 
     int total_gasolineras = cargar_datos(ruta, gasolineras);
     mostrar_tabla(gasolineras, total_gasolineras);
+    calcularPrecioMaximo(gasolineras, MAX_RECORDS);
+    calcularPrecioMinimo(gasolineras, MAX_RECORDS);
+
     if (total_gasolineras < 0) {
         return 1;
     }
 
-    printf("Archivo cargado correctamente. Total de registros: %d\\n", total_gasolineras);
+
     return 0;
 }
