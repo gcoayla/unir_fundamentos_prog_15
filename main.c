@@ -4,7 +4,7 @@
 
 #define MAX_LINE 1024
 #define MAX_RECORDS 1000
-
+//HOLA
 typedef struct {
     int id;
     char provincia[50];
@@ -181,21 +181,6 @@ void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
     printf("=========================================================================================================================\n");
 }
 
-int main() {
-    Gasolinera gasolineras[] = {
-        {1, "Madrid", "Madrid", "28001", "Calle Mayor", "D", "Repsol", 1.56, 1.65, 1.48},
-        {2, "Barcelona", "Barcelona", "08001", "Rambla", "I", "Cepsa", 1.52, 1.62, 1.45}
-    };
-
-    int cantidad = sizeof(gasolineras) / sizeof(Gasolinera);
-
-    printf("Tabla de registros de gasolineras:\n\n");
-    mostrar_tabla(gasolineras, cantidad);
-
-    return 0;
-    }
-
-}
 
 // Problema 2 imprimir registro por ID
 void imprimirRegistroPorId() {
@@ -228,7 +213,9 @@ int main(void) {
     printf("Ingrese la ruta del archivo CSV: ");
     scanf("%255s", ruta);
 
+
     int total_gasolineras = cargar_datos(ruta, gasolineras);
+    mostrar_tabla(gasolineras, total_gasolineras);
     if (total_gasolineras < 0) {
         return 1;
     }

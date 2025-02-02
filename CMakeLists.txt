@@ -3,4 +3,6 @@ project(unir_fundamentos_prog_15 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(unir_fundamentos_prog_15 main.c)
+add_executable(unir_fundamentos_prog_15 main.c
+        main.c
+        main.c)
