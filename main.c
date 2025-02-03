@@ -25,7 +25,7 @@ typedef struct {
 
 // ----------------- Funciones de utilidad
 
-int cargar_datos(Gasolinera gasolineras[]) {
+int cargar_datos(const char *filename, Gasolinera gasolineras[]) {
 
     FILE *file = fopen(FILE_NAME, "r");
 
@@ -348,8 +348,11 @@ void menu(Gasolinera gasolineras[], int cantidad) {
 
 int main(void) {
     Gasolinera gasolineras[MAX_RECORDS];
+    char ruta[256];
+    printf("Ingrese la ruta del archivo txt: ");
+    scanf("%255s", ruta);
 
-    int total_gasolineras = cargar_datos(gasolineras);
+    int total_gasolineras = cargar_datos(ruta, gasolineras);
 
     if (total_gasolineras == -1) {
         return -1;
