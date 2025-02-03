@@ -329,7 +329,7 @@ void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
 }
 
 // Problema 6 imprimir todos los registros ordenados por precio
-void imprimirRegistrosOrdenados() {
+void imprimirRegistrosOrdenados(Gasolinera gasolineras[], int cantidad) {
 
 }
 
