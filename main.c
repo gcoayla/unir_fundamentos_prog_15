@@ -186,23 +186,25 @@ void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
         return;  //Salida temprana si no hay registros
     }
 
-    printf("=========================================================================================================================\n");
-    printf("| %-5s | %-15s | %-20s | %-5s | %-50s | %-6s | %-20s | %-8s | %-8s | %-8s |\n",
-           "ID", "Provincia", "Localidad", "C.Postal", "Direccion", "Margen", "Rotulo", "Gas95", "Gas98", "GasoleoA");
-    printf("=========================================================================================================================\n");
-
     for (int i = 0; i < cantidad; i++) {
-        printf("| %-5d | %-15.15s | %-20.20s | %-d | %-50.50s | %-6s | %-20.20s | %-8.5f | %-8.5f | %-8.5f |\n",
-               gasolineras[i].id,
-               gasolineras[i].provincia,
-               gasolineras[i].localidad,
-               gasolineras[i].codigo_postal,
+        printf("==============================\n");
+        printf("%d : %s |\n",
+               gasolineras[i].id, gasolineras[i].rotulo);
+        printf("%-50.50s (%d %s , %s  |\n",
                gasolineras[i].direccion,
-               gasolineras[i].margen,
-               gasolineras[i].rotulo,
-               gasolineras[i].gasolina95,
-               gasolineras[i].gasolina98,
-               gasolineras[i].gasoleoA);
+               gasolineras[i].codigo_postal,
+               gasolineras[i].localidad,
+               gasolineras[i].provincia
+               );
+        printf("Gasolina95: %f \n",
+               gasolineras[i].gasolina95
+               );
+        printf("Gasolina98: %f \n",
+               gasolineras[i].gasolina98
+               );
+        printf("Gasoleo A: %f \n",
+               gasolineras[i].gasoleoA
+               );
     }
 
     printf("=========================================================================================================================\n");
