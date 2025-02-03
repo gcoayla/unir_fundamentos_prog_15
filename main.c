@@ -190,7 +190,7 @@ void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
 
     printf("=========================================================================================================================\n");
     printf("| %-5s | %-15s | %-20s | %-5s | %-50s | %-6s | %-20s | %-8s | %-8s | %-8s |\n",
-           "ID", "Provincia", "Localidad", "C.Postal", "Dirección", "Margen", "Rótulo", "Gas95", "Gas98", "GasoleoA");
+           "ID", "Provincia", "Localidad", "C.Postal", "Direccion", "Margen", "Rotulo", "Gas95", "Gas98", "GasoleoA");
     printf("=========================================================================================================================\n");
 
     for (int i = 0; i < cantidad; i++) {
@@ -270,7 +270,6 @@ void calcularPrecioMaximo(Gasolinera gasolineras[], int cantidad) {
     printf("--------------------------------- \n");
 }
 
-
 //***Problema 5 calcular el precio minimo (gasolina 95)
 void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
     float minimo = 1024; //Inicializamos con un valor alto
@@ -291,25 +290,30 @@ void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
 
 //***Problema 6 imprimir todos los registros ordenados por precio
 
-//--Para un algoritmo de ordenación--
-int compararPorGasolina95(const void *a, const void *b){
-    Gasolinera *gas1 = (Gasolinera *)a;
-    Gasolinera *gas2 = (Gasolinera *)b;
+//--Para un algoritmo de ordenación de burbuja--
+void Bur(Gasolinera gasolineras[], int n) {
+    if (n == 1) {
+        return;
+    }
 
-    if (gas1 -> gasolina95 < gas2 -> gasolina95) return -1;
-    if (gas1 -> gasolina95 > gas2 -> gasolina95) return 1;
-
-    return 0;
-};
+    for (int i = 0; i < n - 1; i++) {
+        if (gasolineras[i].gasolina95 > gasolineras[i + 1].gasolina95) {
+            Gasolinera temp = gasolineras[i];
+            gasolineras[i] = gasolineras[i + 1];
+            gasolineras[i + 1] = temp;
+        }
+    }
+    Bur(gasolineras, n - 1);
+}
 
 void imprimirRegistrosOrdenados(Gasolinera gasolineras[], int cantidad) {
     if (cantidad <= 0) {
         printf("Lamento informarle que NO se encontraron registros de gasolineras.\n");
         return;
     }
-    qsort(gasolineras, cantidad, sizeof(Gasolinera), compararPorGasolina95);
+    Bur(gasolineras, cantidad);
     mostrar_tabla(gasolineras, cantidad);
-};
+}
 
 void menu(Gasolinera gasolineras[], int cantidad) {
     printf("Seleccione una opcion, ingrese un numero entero entre 1 - 7 \n");
@@ -359,6 +363,7 @@ void menu(Gasolinera gasolineras[], int cantidad) {
         imprimirRegistrosOrdenados(gasolineras, cantidad);
         menu(gasolineras, cantidad);
     } else if (input == 7) {
+        printf("Saliendo del programa...\n");
         return;
     }
 }
