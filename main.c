@@ -5,12 +5,13 @@
 
 #define MAX_LINE 1024
 #define MAX_RECORDS 1000
+#define FILE_NAME "../gasolineras.txt"
 //HOLA
 typedef struct {
     int id;
     char provincia[50];
     char localidad[50];
-    char codigo_postal[10];
+    int codigo_postal;
     char direccion[100];
     char margen[2];
     char rotulo[50];
@@ -21,39 +22,63 @@ typedef struct {
 
 // ----------------- Funciones de utilidad
 
-int cargar_datos(const char *filename, Gasolinera gasolineras[]) {
-    FILE *file = fopen(filename, "r");
-    if (!file) {
-        printf("No se pudo abrir el archivo: %s. Verifique que existe y tiene permisos de lectura.\n", filename);
+int cargar_datos(Gasolinera gasolineras[]) {
+
+    FILE *file = fopen(FILE_NAME, "r");
+
+
+    if (file == NULL) {
+        printf("No se pudo abrir el archivo: %s. Verifique que existe y tiene permisos de lectura.\n", FILE_NAME);
         return -1;
     }
 
-    char buffer[MAX_LINE];
-    int count = 0;
-
-    while (fgets(buffer, MAX_LINE, file) && count < MAX_RECORDS) {
-        if (count == 0) {
-            count++;
-            continue;
-        }
-
-        sscanf(buffer, "%d,%49[^,],%49[^,],%9[^,],%99[^,],%1[^,],%49[^,],%f,%f,%f",
-               &gasolineras[count - 1].id,
-               gasolineras[count - 1].provincia,
-               gasolineras[count - 1].localidad,
-               gasolineras[count - 1].codigo_postal,
-               gasolineras[count - 1].direccion,
-               gasolineras[count - 1].margen,
-               gasolineras[count - 1].rotulo,
-               &gasolineras[count - 1].gasolina95,
-               &gasolineras[count - 1].gasolina98,
-               &gasolineras[count - 1].gasoleoA);
-
-        count++;
+    int num_registros = 0;
+    char linea[1000];
+    while (fgets(linea, sizeof(linea), file) != NULL) {
+        num_registros++;
     }
 
+    rewind(file);
+
+    int i = 0;
+    while (fgets(linea, sizeof(linea), file) != NULL) {
+        char* token = strtok(linea, ";");
+
+        gasolineras[i].id = atoi(token);
+
+        token = strtok(NULL, ";");
+        strcpy(gasolineras[i].provincia, token);
+
+        token = strtok(NULL, ";");
+        strcpy(gasolineras[i].localidad, token);
+
+        token = strtok(NULL, ";");
+        gasolineras[i].codigo_postal = atoi(token);
+
+        token = strtok(NULL, ";");
+        strcpy(gasolineras[i].direccion, token);
+
+        token = strtok(NULL, ";");
+        strcpy(gasolineras[i].margen, token);
+
+        token = strtok(NULL, ";");
+        strcpy(gasolineras[i].rotulo, token);
+
+        token = strtok(NULL, ";");
+        gasolineras[i].gasolina95 = atof(token);
+
+        token = strtok(NULL, ";");
+        gasolineras[i].gasolina98 = atof(token);
+
+        token = strtok(NULL, ";");
+        gasolineras[i].gasoleoA = atof(token);
+
+        i++;
+    }
+
+
     fclose(file);
-    return count - 1;
+    return num_registros;
 }
 
 // Función para verificar si una cadena contiene solo dígitos
@@ -161,12 +186,12 @@ void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
     }
 
     printf("=========================================================================================================================\n");
-    printf("| %-5s | %-15s | %-20s | %-10s | %-25s | %-6s | %-20s | %-8s | %-8s | %-8s |\n",
+    printf("| %-5s | %-15s | %-20s | %-4s | %-50s | %-6s | %-20s | %-8s | %-8s | %-8s |\n",
            "ID", "Provincia", "Localidad", "C.Postal", "Dirección", "Margen", "Rótulo", "Gas95", "Gas98", "GasoleoA");
     printf("=========================================================================================================================\n");
 
     for (int i = 0; i < cantidad; i++) {
-        printf("| %-5d | %-15.15s | %-20.20s | %-10.10s | %-25.25s | %-6s | %-20.20s | %-8.2f | %-8.2f | %-8.2f |\n",
+        printf("| %-5d | %-15.15s | %-20.20s | %-d | %-50.50s | %-6s | %-20.20s | %-8.5f | %-8.5f | %-8.5f |\n",
                gasolineras[i].id,
                gasolineras[i].provincia,
                gasolineras[i].localidad,
@@ -335,12 +360,10 @@ void imprimirRegistrosOrdenados(Gasolinera gasolineras[], int cantidad) {
 
 int main(void) {
     Gasolinera gasolineras[MAX_RECORDS];
-    char ruta[256];
-    printf("Ingrese la ruta del archivo CSV: ");
-    scanf("%255s", ruta);
+
+    int total_gasolineras = cargar_datos(gasolineras);
 
 
-    int total_gasolineras = cargar_datos(ruta, gasolineras);
     mostrar_tabla(gasolineras, total_gasolineras);
     calcularPrecioMaximo(gasolineras, MAX_RECORDS);
     calcularPrecioMinimo(gasolineras, MAX_RECORDS);
