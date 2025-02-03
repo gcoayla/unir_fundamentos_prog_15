@@ -231,8 +231,8 @@ void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, int id) {
         if (gasolineras[i].id == id) {
             // Si encontramos la gasolinera por ID, solo se permiten modificaciones en los precios de los combustibles
             printf("Gasolinera encontrada: %d\n", gasolineras[i].id);
-            printf("Dirección: %s\n", gasolineras[i].direccion);
-            printf("Rótulo: %s\n", gasolineras[i].rotulo);
+            printf("Direccion: %s\n", gasolineras[i].direccion);
+            printf("Rotulo: %s\n", gasolineras[i].rotulo);
 
             // Solicitar los nuevos registros
             printf("Introduzca el nuevo precio para Gasolina95 (actual: %.6f): ", gasolineras[i].gasolina95);
@@ -265,7 +265,7 @@ void calcularPrecioMaximo(Gasolinera gasolineras[], int cantidad) {
     if (maximo == -1) {
         printf("No se encontraron valores validos en la lista de gasolineras.\n");
     } else {
-        printf("El valor más alto de la gasolina 95 es: %.2f\n", maximo);
+        printf("El valor mas alto de la gasolina 95 es: %.2f\n", maximo);
     }
     printf("--------------------------------- \n");
 }
@@ -281,9 +281,9 @@ void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
     }
 
     if (minimo == 1024) {
-        printf("No se encontraron valores válidos en la lista de gasolineras.\n");
+        printf("No se encontraron valores validos en la lista de gasolineras.\n");
     } else {
-        printf("El valor más bajo de la gasolina 95 es: %.2f\n", minimo);
+        printf("El valor mas bajo de la gasolina 95 es: %.2f\n", minimo);
     }
     printf("--------------------------------- \n");
 }
