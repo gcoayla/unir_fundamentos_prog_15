@@ -349,7 +349,7 @@ void menu(Gasolinera gasolineras[], int cantidad) {
 int main(void) {
     Gasolinera gasolineras[MAX_RECORDS];
     char ruta[256];
-    printf("Ingrese la ruta del archivo txt: ");
+    printf("Ingrese la ruta del archivo txt, puede ser una ruta absoluta o relativa: ");
     scanf("%255s", ruta);
 
     int total_gasolineras = cargar_datos(ruta, gasolineras);
