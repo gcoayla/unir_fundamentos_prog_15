@@ -254,38 +254,41 @@ void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, int id) {
 
 //***Problema 4 calcular el precio maximo (gasolina 95)
 void calcularPrecioMaximo(Gasolinera gasolineras[], int cantidad) {
-    float maximo = -1; //Inicializamos con un valor bajo
+    float maximo = -1; // Inicializamos con un valor bajo
+    int iterador = -1;
 
     for (int i = 0; i < cantidad; i++) {
-        if (gasolineras[i].gasolina95 > maximo) { // Buscar el valor más alto
-            maximo = gasolineras[i].gasolina95;
+        if (gasolineras[i].gasolina98 > maximo) { // Buscar el valor más alto
+            maximo = gasolineras[i].gasolina98; // encuentra el valor mas alto
+            iterador = i; // guarda la posicion en el array
         }
     }
 
-    if (maximo == -1) {
-        printf("No se encontraron valores validos en la lista de gasolineras.\n");
+    if (maximo == -1 || iterador == -1) {
+        printf("No se encontraron valores válidos en la lista de gasolineras.\n");
     } else {
-        printf("El valor mas alto de la gasolina 95 es: %.2f\n", maximo);
+        printf("El valor más alto de la gasolina 98 es: %.2f\n con el rotulo: %s \n", maximo, gasolineras[iterador].rotulo);
     }
-    printf("--------------------------------- \n");
 }
 
-//***Problema 5 calcular el precio minimo (gasolina 95)
+
+// Problema 5 calcular el precio minimo (gasolina 95)
 void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
-    float minimo = 1024; //Inicializamos con un valor alto
+    float minimo = 1024; // Inicializamos con un valor alto
+    int iterador = -1;
 
     for (int i = 0; i < cantidad; i++) {
-        if (gasolineras[i].gasolina95 > 0 && gasolineras[i].gasolina95 < minimo) {
-            minimo = gasolineras[i].gasolina95; // Buscar el valor más bajo
+        if (gasolineras[i].gasolina98 > 0 && gasolineras[i].gasolina98 < minimo) {
+            minimo = gasolineras[i].gasolina98; // Buscar el valor más bajo
+            iterador = i; //guarda la posicion en el array
         }
     }
 
-    if (minimo == 1024) {
-        printf("No se encontraron valores validos en la lista de gasolineras.\n");
+    if (minimo == 1024 || iterador == -1) {
+        printf("No se encontraron valores válidos en la lista de gasolineras.\n");
     } else {
-        printf("El valor mas bajo de la gasolina 95 es: %.2f\n", minimo);
+        printf("El valor más bajo de la gasolina 98 es: %.2f\n con el rotulo: %s \n", minimo, gasolineras[iterador].rotulo);
     }
-    printf("--------------------------------- \n");
 }
 
 //***Problema 6 imprimir todos los registros ordenados por precio
