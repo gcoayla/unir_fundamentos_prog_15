@@ -184,12 +184,41 @@ void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
 
 
 // Problema 2 imprimir registro por ID
-void imprimirRegistroPorId() {
-
+void imprimirRegistroPorId(Gasolinera gasolineras[], int count, int id) {
+    for (int i = 0; i < count; i++) {  // bucle para recorrer la lista
+        if (gasolineras[i].id == id) {
+            printf("\nN.o %d: %s\n", gasolineras[i].id, gasolineras[i].rotulo);
+            printf("• %s (%s, %s).\n", gasolineras[i].direccion, gasolineras[i].localidad, gasolineras[i].provincia);
+            printf("• Gasolina 95: %.6f\n", gasolineras[i].gasolina95);
+            printf("• Gasolina 98: %.6f\n", gasolineras[i].gasolina98);
+            printf("• Gasoleo A: %.6f\n", gasolineras[i].gasoleoA);
+            return;
+        }
+    }
 }
-
 // Problema 3 modificar registro por ID
-void modificarRegistroPorId() {
+void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, char id[]) {
+    for (int i = 0; i < cantidad; i++) {
+        if (strcmp(gasolineras[i].id, id) == 0) {
+            // Si encontramos la gasolinera por ID, solo se permiten modificaciones en los precios de los combustibles
+            printf("Gasolinera encontrada: %s\n", gasolineras[i].id);
+            printf("Dirección: %s\n", gasolineras[i].direccion);
+            printf("Rótulo: %s\n", gasolineras[i].rotulo);
+
+            // Solicitar los nuevos registros
+            printf("Introduzca el nuevo precio para Gasolina95 (actual: %.6f): ", gasolineras[i].gasolina95);
+            scanf("%f", &gasolineras[i].gasolina95);
+
+            printf("Introduzca el nuevo precio para Gasolina98 (actual: %.6f): ", gasolineras[i].gasolina98);
+            scanf("%f", &gasolineras[i].gasolina98);
+
+            printf("Introduzca el nuevo precio para Gasóleo A (actual: %.6f): ", gasolineras[i].gasoleoA);
+            scanf("%f", &gasolineras[i].gasoleoA);
+
+            printf("Registro de la gasolinera con ID %s modificado correctamente.\n", id);
+            return;
+        }
+    }
 
 }
 
