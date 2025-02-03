@@ -235,14 +235,14 @@ void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, int id) {
             printf("Rotulo: %s\n", gasolineras[i].rotulo);
 
             // Solicitar los nuevos registros
-            printf("Introduzca el nuevo precio para Gasolina95 (actual: %.6f): ", gasolineras[i].gasolina95);
-            scanf("%f", &gasolineras[i].gasolina95);
+            printf("Introduzca el nuevo precio para Gasolina95 (actual: %.6f): \n", gasolineras[i].gasolina95);
+            gasolineras[i].gasolina95 = obtenerFlotanteO1Negativo();
 
-            printf("Introduzca el nuevo precio para Gasolina98 (actual: %.6f): ", gasolineras[i].gasolina98);
-            scanf("%f", &gasolineras[i].gasolina98);
+            printf("Introduzca el nuevo precio para Gasolina98 (actual: %.6f): \n", gasolineras[i].gasolina98);
+            gasolineras[i].gasolina98 = obtenerFlotanteO1Negativo();
 
-            printf("Introduzca el nuevo precio para Gasoleo A (actual: %.6f): ", gasolineras[i].gasoleoA);
-            scanf("%f", &gasolineras[i].gasoleoA);
+            printf("Introduzca el nuevo precio para Gasoleo A (actual: %.6f): \n", gasolineras[i].gasoleoA);
+            gasolineras[i].gasoleoA = obtenerFlotanteO1Negativo();
 
             printf("Registro de la gasolinera con ID %d modificado correctamente.\n", id);
             printf("--------------------------------- \n");
