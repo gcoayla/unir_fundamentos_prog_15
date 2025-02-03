@@ -6,7 +6,10 @@
 #define MAX_LINE 1024
 #define MAX_RECORDS 1000
 #define FILE_NAME "../gasolineras.txt"
-//HOLA
+
+void menu();
+
+//Objeto Gasolinera para almacenar la informacion
 typedef struct {
     int id;
     char provincia[50];
@@ -20,8 +23,9 @@ typedef struct {
     float gasoleoA;
 } Gasolinera;
 
-//----------------- Funciones de utilidad
-int cargar_datos(Gasolinera gasolineras[]) {
+// ----------------- Funciones de utilidad
+
+int cargar_datos(const char *filename, Gasolinera gasolineras[]) {
 
     FILE *file = fopen(FILE_NAME, "r");
 
@@ -185,7 +189,7 @@ void mostrar_tabla(Gasolinera gasolineras[], int cantidad) {
     }
 
     printf("=========================================================================================================================\n");
-    printf("| %-5s | %-15s | %-20s | %-4s | %-50s | %-6s | %-20s | %-8s | %-8s | %-8s |\n",
+    printf("| %-5s | %-15s | %-20s | %-5s | %-50s | %-6s | %-20s | %-8s | %-8s | %-8s |\n",
            "ID", "Provincia", "Localidad", "C.Postal", "Dirección", "Margen", "Rótulo", "Gas95", "Gas98", "GasoleoA");
     printf("=========================================================================================================================\n");
 
@@ -215,18 +219,20 @@ void imprimirRegistroPorId(Gasolinera gasolineras[], int count, int id) {
             printf("• Gasolina 95: %.6f\n", gasolineras[i].gasolina95);
             printf("• Gasolina 98: %.6f\n", gasolineras[i].gasolina98);
             printf("• Gasoleo A: %.6f\n", gasolineras[i].gasoleoA);
+            printf("--------------------------------- \n");
             return;
         }
     }
 }
-//***Problema 3 modificar registro por ID
-void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, char id[]) {
+
+// Problema 3 modificar registro por ID
+void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, int id) {
     for (int i = 0; i < cantidad; i++) {
-        if (strcmp(gasolineras[i].id, id) == 0) {
-            //Si encontramos la gasolinera por ID, solo se permiten modificaciones en los precios de los combustibles
-            printf("Gasolinera encontrada: %s\n", gasolineras[i].id);
-            printf("Direccion: %s\n", gasolineras[i].direccion);
-            printf("Rotulo: %s\n", gasolineras[i].rotulo);
+        if (gasolineras[i].id == id) {
+            // Si encontramos la gasolinera por ID, solo se permiten modificaciones en los precios de los combustibles
+            printf("Gasolinera encontrada: %d\n", gasolineras[i].id);
+            printf("Dirección: %s\n", gasolineras[i].direccion);
+            printf("Rótulo: %s\n", gasolineras[i].rotulo);
 
             // Solicitar los nuevos registros
             printf("Introduzca el nuevo precio para Gasolina95 (actual: %.6f): ", gasolineras[i].gasolina95);
@@ -238,7 +244,8 @@ void modificarRegistroPorId(Gasolinera gasolineras[], int cantidad, char id[]) {
             printf("Introduzca el nuevo precio para Gasoleo A (actual: %.6f): ", gasolineras[i].gasoleoA);
             scanf("%f", &gasolineras[i].gasoleoA);
 
-            printf("Registro de la gasolinera con ID %s modificado correctamente.\n", id);
+            printf("Registro de la gasolinera con ID %d modificado correctamente.\n", id);
+            printf("--------------------------------- \n");
             return;
         }
     }
@@ -250,16 +257,17 @@ void calcularPrecioMaximo(Gasolinera gasolineras[], int cantidad) {
     float maximo = -1; //Inicializamos con un valor bajo
 
     for (int i = 0; i < cantidad; i++) {
-        if (gasolineras[i].gasolina98 > maximo) { //Buscar el valor más alto
-            maximo = gasolineras[i].gasolina98;
+        if (gasolineras[i].gasolina95 > maximo) { // Buscar el valor más alto
+            maximo = gasolineras[i].gasolina95;
         }
     }
 
     if (maximo == -1) {
         printf("No se encontraron valores validos en la lista de gasolineras.\n");
     } else {
-        printf("El valor mas alto de la gasolina 98 es: %.2f\n", maximo);
+        printf("El valor más alto de la gasolina 95 es: %.2f\n", maximo);
     }
+    printf("--------------------------------- \n");
 }
 
 
@@ -268,22 +276,23 @@ void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
     float minimo = 1024; //Inicializamos con un valor alto
 
     for (int i = 0; i < cantidad; i++) {
-        if (gasolineras[i].gasolina98 > 0 && gasolineras[i].gasolina98 < minimo) {
-            minimo = gasolineras[i].gasolina98; //Buscar el valor más bajo
+        if (gasolineras[i].gasolina95 > 0 && gasolineras[i].gasolina95 < minimo) {
+            minimo = gasolineras[i].gasolina95; // Buscar el valor más bajo
         }
     }
 
     if (minimo == 1024) {
         printf("No se encontraron valores válidos en la lista de gasolineras.\n");
     } else {
-        printf("El valor más bajo de la gasolina 98 es: %.2f\n", minimo);
+        printf("El valor más bajo de la gasolina 95 es: %.2f\n", minimo);
     }
+    printf("--------------------------------- \n");
 }
 
 //***Problema 6 imprimir todos los registros ordenados por precio
 
 //--Para un algoritmo de ordenación--
-int compararPorGasolina95(const void *a, const void *b) {
+int compararPorGasolina95(const void *a, const void *b){
     Gasolinera *gas1 = (Gasolinera *)a;
     Gasolinera *gas2 = (Gasolinera *)b;
 
@@ -291,7 +300,7 @@ int compararPorGasolina95(const void *a, const void *b) {
     if (gas1 -> gasolina95 > gas2 -> gasolina95) return 1;
 
     return 0;
-}
+};
 
 void imprimirRegistrosOrdenados(Gasolinera gasolineras[], int cantidad) {
     if (cantidad <= 0) {
@@ -300,21 +309,73 @@ void imprimirRegistrosOrdenados(Gasolinera gasolineras[], int cantidad) {
     }
     qsort(gasolineras, cantidad, sizeof(Gasolinera), compararPorGasolina95);
     mostrar_tabla(gasolineras, cantidad);
+};
+
+void menu(Gasolinera gasolineras[], int cantidad) {
+    printf("Seleccione una opcion, ingrese un numero entero entre 1 - 7 \n");
+    printf("1- Mostrar todos los registros \n");
+    printf("2- Mostrar registro a partir de su ID \n");
+    printf("3- Modificar registro a partir de su ID \n");
+    printf("4- Calcular el precio maximo (gasolina 95) \n");
+    printf("5- Calcular el precio minimo (gasolina 95) \n");
+    printf("6- Mostrar todos los registros ordenados por precio (gasolina 95) \n");
+    printf("7- Salir \n");
+
+    int input = 0;
+
+    while (input < 1 || input > 8) {
+        printf("Ingrese un numero entero entre 1 - 7 \n");
+        input = obtenerEntero();
+    }
+
+    if (input == 1) {
+        mostrar_tabla(gasolineras, cantidad);
+        menu(gasolineras, cantidad);
+    } else if (input == 2) {
+        int id = 0;
+        while (id < 1 || id > cantidad) {
+            printf("Ingrese un id entero entre 1 - %d \n", cantidad);
+            id = obtenerEntero();
+        }
+
+        imprimirRegistroPorId(gasolineras, cantidad, id );
+        menu(gasolineras, cantidad);
+    } else if (input == 3) {
+        int id = 0;
+        while (id < 1 || id > cantidad) {
+            printf("Ingrese un id entero entre 1 - %d \n", cantidad);
+            id = obtenerEntero();
+        }
+
+        modificarRegistroPorId(gasolineras, cantidad, id );
+        menu(gasolineras, cantidad);
+    } else if (input == 4) {
+        calcularPrecioMaximo(gasolineras, cantidad);
+        menu(gasolineras, cantidad);
+    } else if (input == 5) {
+        calcularPrecioMinimo(gasolineras, cantidad);
+        menu(gasolineras, cantidad);
+    } else if (input == 6) {
+        imprimirRegistrosOrdenados(gasolineras, cantidad);
+        menu(gasolineras, cantidad);
+    } else if (input == 7) {
+        return;
+    }
 }
 
 int main(void) {
     Gasolinera gasolineras[MAX_RECORDS];
+    char ruta[256];
+    printf("Ingrese la ruta del archivo txt, puede ser una ruta absoluta o relativa: ");
+    scanf("%255s", ruta);
 
-    int total_gasolineras = cargar_datos(gasolineras);
+    int total_gasolineras = cargar_datos(ruta, gasolineras);
 
-    mostrar_tabla(gasolineras, total_gasolineras);
-    calcularPrecioMaximo(gasolineras, total_gasolineras);
-    calcularPrecioMinimo(gasolineras, total_gasolineras);
-    imprimirRegistrosOrdenados(gasolineras, total_gasolineras);
-
-    if (total_gasolineras < 0) {
-        return 1;
+    if (total_gasolineras == -1) {
+        return -1;
     }
+
+    menu(gasolineras, total_gasolineras);
 
     return 0;
 }
