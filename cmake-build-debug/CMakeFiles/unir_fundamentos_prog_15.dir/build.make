@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.3\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2024.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\miner\unir_fundamentos_prog_15
+CMAKE_SOURCE_DIR = "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\miner\unir_fundamentos_prog_15\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/unir_fundamentos_prog_15.dir/depend.make
@@ -69,18 +69,18 @@ include CMakeFiles/unir_fundamentos_prog_15.dir/progress.make
 include CMakeFiles/unir_fundamentos_prog_15.dir/flags.make
 
 CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj: CMakeFiles/unir_fundamentos_prog_15.dir/flags.make
-CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj: C:/Users/miner/unir_fundamentos_prog_15/main.c
+CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj: C:/Users/Iriel\ Alejandra/Documents/actgrupalprogramacion/unir_fundamentos_prog_15/main.c
 CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj: CMakeFiles/unir_fundamentos_prog_15.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miner\unir_fundamentos_prog_15\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj -MF CMakeFiles\unir_fundamentos_prog_15.dir\main.c.obj.d -o CMakeFiles\unir_fundamentos_prog_15.dir\main.c.obj -c C:\Users\miner\unir_fundamentos_prog_15\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/unir_fundamentos_prog_15.dir/main.c.obj -MF CMakeFiles\unir_fundamentos_prog_15.dir\main.c.obj.d -o CMakeFiles\unir_fundamentos_prog_15.dir\main.c.obj -c "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\main.c"
 
 CMakeFiles/unir_fundamentos_prog_15.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/unir_fundamentos_prog_15.dir/main.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\miner\unir_fundamentos_prog_15\main.c > CMakeFiles\unir_fundamentos_prog_15.dir\main.c.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\main.c" > CMakeFiles\unir_fundamentos_prog_15.dir\main.c.i
 
 CMakeFiles/unir_fundamentos_prog_15.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/unir_fundamentos_prog_15.dir/main.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\miner\unir_fundamentos_prog_15\main.c -o CMakeFiles\unir_fundamentos_prog_15.dir\main.c.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\main.c" -o CMakeFiles\unir_fundamentos_prog_15.dir\main.c.s
 
 # Object files for target unir_fundamentos_prog_15
 unir_fundamentos_prog_15_OBJECTS = \
@@ -94,7 +94,7 @@ unir_fundamentos_prog_15.exe: CMakeFiles/unir_fundamentos_prog_15.dir/build.make
 unir_fundamentos_prog_15.exe: CMakeFiles/unir_fundamentos_prog_15.dir/linkLibs.rsp
 unir_fundamentos_prog_15.exe: CMakeFiles/unir_fundamentos_prog_15.dir/objects1.rsp
 unir_fundamentos_prog_15.exe: CMakeFiles/unir_fundamentos_prog_15.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\miner\unir_fundamentos_prog_15\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable unir_fundamentos_prog_15.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable unir_fundamentos_prog_15.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\unir_fundamentos_prog_15.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -106,6 +106,6 @@ CMakeFiles/unir_fundamentos_prog_15.dir/clean:
 .PHONY : CMakeFiles/unir_fundamentos_prog_15.dir/clean
 
 CMakeFiles/unir_fundamentos_prog_15.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\miner\unir_fundamentos_prog_15 C:\Users\miner\unir_fundamentos_prog_15 C:\Users\miner\unir_fundamentos_prog_15\cmake-build-debug C:\Users\miner\unir_fundamentos_prog_15\cmake-build-debug C:\Users\miner\unir_fundamentos_prog_15\cmake-build-debug\CMakeFiles\unir_fundamentos_prog_15.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15" "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15" "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\cmake-build-debug" "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\cmake-build-debug" "C:\Users\Iriel Alejandra\Documents\actgrupalprogramacion\unir_fundamentos_prog_15\cmake-build-debug\CMakeFiles\unir_fundamentos_prog_15.dir\DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : CMakeFiles/unir_fundamentos_prog_15.dir/depend
 

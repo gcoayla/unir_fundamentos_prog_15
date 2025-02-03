@@ -282,8 +282,22 @@ void calcularPrecioMinimo(Gasolinera gasolineras[], int cantidad) {
     }
 }
 
-// Problema 6 imprimir todos los registros ordenados por precio
+//--Para un algoritmo de ordenación--
+int compararPorGasolina95(const void *a, const void *b) {
+    Gasolinera *gas1 = (Gasolinera *)a;
+    Gasolinera *gas2 = (Gasolinera *)b;
+
+    if (gas1 -> gasolina95 < gas2 -> gasolina95) return -1;
+    if (gas1 -> gasolina95 > gas2 -> gasolina95) return 1;
+    return 0;
+}
+
+//Problema 6 imprimir todos los registros ordenados por precio
 void imprimirRegistrosOrdenados(Gasolinera gasolineras[], int cantidad) {
+    if (cantidad <= 0) {
+        printf("Lamento informarle que NO se encontraron registros de gasolineras.\n");
+        return;
+    }
 
 }
 
