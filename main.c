@@ -5,7 +5,6 @@
 
 #define MAX_LINE 1024
 #define MAX_RECORDS 1000
-#define FILE_NAME "../gasolineras.txt"
 
 void menu();
 
@@ -27,11 +26,10 @@ typedef struct {
 
 int cargar_datos(const char *filename, Gasolinera gasolineras[]) {
 
-    FILE *file = fopen(FILE_NAME, "r");
-
+    FILE *file = fopen(filename, "r");
 
     if (file == NULL) {
-        printf("No se pudo abrir el archivo: %s. Verifique que existe y tiene permisos de lectura.\n", FILE_NAME);
+        printf("No se pudo abrir el archivo: %s. Verifique que existe y tiene permisos de lectura.\n", filename);
         return -1;
     }
 
