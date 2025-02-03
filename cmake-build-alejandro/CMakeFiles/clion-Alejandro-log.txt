@@ -1,0 +1,6 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/alejandrovasquez/Documents/Universidad/unir_fundamentos_prog_15 -B /Users/alejandrovasquez/Documents/Universidad/unir_fundamentos_prog_15/cmake-build-alejandro
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 3.30 or higher is required.  You are running version 3.29.6
+
+
+-- Configuring incomplete, errors occurred!
